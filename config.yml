@@ -1,0 +1,54 @@
+server: 127.0.0.1
+#dbpath: ścieżka windowsowa lub linuxowa, ale z '\' lub '/' na końcu
+dbpath: c:\DB_GROSZEK\
+#excelpath: lokalizacja pliku wyjściowego; z '\' na końcu
+#excelpath: c:\
+user: sysdba
+password: password
+databases:
+  - IS_KASA.GDB
+  - IS_PDK.GDB
+  - IS_ST.GDB
+  - IS_PDA.GDB
+#  - IS_RDK.GDB
+systems:
+# nazwa w bazie danych: nazwa na stronie infosystem
+  'Administrowanie pakietem': 'Admin'
+  'Podatek transportowy': 'Auta'
+  'Baza Osobowa': 'BOAdmin'
+  '': 'Czynsze'
+  '': 'Dodatki Mieszkaniowe'
+  'System wymiaru dzierżaw, najmu i użyczenia': 'Dzierżawy'
+  '': 'eAdmin'
+  'Egzekucje': 'Egzekucje'
+  '': 'ePodatki'
+  'Ewidencja Gruntów i Budynków': 'Ewidencja Gruntów i Budynków'
+  '': 'eWizja'
+  '': 'Finanse i Księgowość'
+  '': 'Integracja'
+  '': 'Kadry i Płace'
+  'System obsługi kasy': 'Kasa'
+  'Księgowość budżetowa i planowanie': 'Księgowość Budżetowa i Planowanie'
+  'Księgowość podatków i opłat': 'Księgowość Zobowiązań'
+  '': 'Materiały'
+  'Opłaty Lokalne': 'Opłaty Lokalne'
+  'Opłaty Skarbowe': 'Opłaty Skarbowe'
+  'Podatki od osób prawnych': 'Podatki'
+  'Podatki': 'Podatki'
+  '': 'Powiadomienia'
+  'Przelewy': 'Przelewy'
+  'Rejestr sprzedaży i zakupów': 'Rejestr VAT'
+  '': 'ViDOK'
+  '': 'Sprawozdania'
+  'Środki Trwałe': 'Środki Trwałe'
+  'Zaangażowanie umów i faktur': 'UmowyFV'
+  'Uniwersalny Program Księgujący': 'Uniwersalny Program Księgujący'
+  'System wymiaru użytkowania wieczystego': 'Użytkowanie Wieczyste'
+  '': 'Wizja'
+  '': 'WizjaJB'
+  '': 'Woda'
+  '': 'Zezwolenia'
+  '': 'Kadry i Płace'
+  'Pakiet dla Administracji 2000': ''
+  'Projektowanie Planu': ''
+  'Wiązanie danych z bazy PDA z bazami referencyjnymi (Dzielnica <-> Miasto)': ''

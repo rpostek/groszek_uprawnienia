@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+beautifulsoup4 = "==4.9.3"
+certifi = "==2020.12.5"
+et-xmlfile = "==1.0.1"
+fdb = "==2.0.1"
+future = "==0.18.2"
+h11 = "==0.11.0"
+httpcore = "==0.12.2"
+httpx = "==0.16.1"
+idna = "==2.10"
+jdcal = "==1.4.1"
+openpyxl = "==3.0.5"
+pyyaml = "==5.3.1"
+regex = "==2020.11.13"
+rfc3986 = "==1.4.0"
+sniffio = "==1.2.0"
+soupsieve = "==2.1"
+wcwidth = "==0.2.5"
+wikitextparser = "==0.47.0"
+pyinstaller = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
