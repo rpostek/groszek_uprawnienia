@@ -1,8 +1,8 @@
 server: 127.0.0.1
 #dbpath: ścieżka windowsowa lub linuxowa, ale z '\' lub '/' na końcu
 dbpath: c:\DB_GROSZEK\
-#excelpath: lokalizacja pliku wyjściowego; z '\' na końcu
-#excelpath: c:\
+#excelpath: nazwa pliku wyjściowego z pełną ścieżką lub bez (bieżacy katalog)
+excelpath: upr_UDW.xlsx
 user: sysdba
 password: password
 databases:
