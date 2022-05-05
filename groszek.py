@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import httpx
 import wikitextparser as wtp
 import sys
+import re
 
 
 def get_config():
@@ -142,27 +143,64 @@ def create_worksheet(db_name, wb):
     ws.freeze_panes = ws['A2']
 
 def get_descriptions():
+    global descriptions
+    try:
+        descriptions = dict()
+        page = httpx.get('https://wiki.groszek.pl/index.php?title=Uprawnienia_operator%C3%B3w')
+        soup = BeautifulSoup(page, 'html.parser')
+        list_all_p = soup.find_all('h2')
+        for system in list_all_p[1:]:
+            system_name = re.sub('^\d+ ', '', system.get_text()).lower()
+            descriptions[system_name] = dict()
+            tab = system.find_next_sibling()
+            tbody = tab.findChildren('tbody', recursive=False)
+            if tbody:
+                rows = tbody[0].findChildren('tr', recursive=False)
+                for row in rows:
+                    cols = row.findChildren('td', recursive=True)
+                    if len(cols) == 2:
+                        descriptions[system_name][cols[0].get_text().replace('\n', '').lower()] = cols[1].get_text().replace(
+                            '\n', '')
+
+    except:
+        descriptions = None
+    return descriptions
+
+def get_desc(system, priv):
+    try:
+        return(descriptions[system.lower()][priv.lower()])
+    except:
+        return ''
+
+
+'''def get_descriptions():
     global parsed
-    page = httpx.get('https://wiki.groszek.pl/index.php?title=Uprawnienia_operator%C3%B3w&action=edit')
-    soup = BeautifulSoup(page.text, 'html.parser')
-    ta = soup.find('textarea')
-    parsed = wtp.parse(ta.string)
+    try:
+        page = httpx.get('https://wiki.groszek.pl/index.php?title=Uprawnienia_operator%C3%B3w&action=edit')
+        soup = BeautifulSoup(page.text, 'html.parser')
+        ta = soup.find('textarea')
+        parsed = wtp.parse(ta.string)
+    except:
+        parsed = None
     return parsed
 
 
 def get_desc(system, priv):
-    system = system.strip()
-    if system in config['systems']:
-        sys_wiki = config['systems'][system].lower()
-        for section in parsed.sections:
-            if section.title:
-                sl = (section.title.strip()).lower()
-                if sl == sys_wiki:
-                    for x in section.tables[0].data():
-                        if x[0].lower() == priv.lower():
-                            return x[1]
-    return ''
-
+    try:
+        system = system.strip()
+        if system in config['systems']:
+            sys_wiki = config['systems'][system].lower()
+            for section in parsed.sections:
+                if section.title:
+                    sl = (section.title.strip()).lower()
+                    if sl == sys_wiki:
+                        for x in section.tables[0].data():
+                            if x[0].lower() == priv.lower():
+                                return x[1]
+        return ''
+    except:
+        return ''
+'''
 
 if (__name__) == '__main__':
     get_config()
